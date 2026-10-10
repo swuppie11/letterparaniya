@@ -1,0 +1,365 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #ffe4ec, #f4dfff);
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 650px;
+    padding: 30px 16px;
+    text-align: center;
+}
+
+h1 {
+    color: #c44569;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #85516b;
+    margin-bottom: 25px;
+}
+
+.top-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 45px;
+}
+
+button {
+    padding: 12px 24px;
+    background: transparent;
+    color: #c44569;
+    border: 2px solid #c44569;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #c44569;
+    color: white;
+    transform: translateY(-2px);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #d96f94;
+    outline-offset: 3px;
+}
+
+/* Envelope */
+
+.envelope-wrapper {
+    display: flex;
+    justify-content: center;
+    perspective: 1000px;
+    padding-top: 10px;
+    margin-bottom: 35px;
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 190px;
+    background: #e98eaa;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 10px 30px rgba(130, 50, 90, 0.2);
+}
+
+.envelope-back {
+    position: absolute;
+    inset: 0;
+    background: #e98eaa;
+    border-radius: 0 0 8px 8px;
+    z-index: 1;
+}
+
+/* Letter */
+
+.letter {
+    position: absolute;
+    left: 15px;
+    bottom: 5px;
+    width: 270px;
+    height: 170px;
+    overflow: hidden;
+    background: #fffdf8;
+    border-radius: 6px;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition:
+        height 0.8s ease,
+        bottom 0.8s ease,
+        transform 0.8s ease;
+}
+
+.letter-content {
+    padding: 20px;
+    color: #70485a;
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: left;
+}
+
+.letter-content h2 {
+    color: #c44569;
+    font-size: 21px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.letter-content p {
+    margin-bottom: 14px;
+}
+
+/* Form fields */
+
+#gamingForm {
+    margin-top: 22px;
+}
+
+#gamingForm > label {
+    display: block;
+    color: #a63d62;
+    font-weight: bold;
+    margin: 18px 0 8px;
+}
+
+#gamingForm input[type="date"],
+#gamingForm select,
+#gamingForm textarea {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    font-family: inherit;
+    font-size: 14px;
+    color: #70485a;
+    background: #fff7fa;
+    border: 1px solid #edb0c5;
+    border-radius: 8px;
+}
+
+#gamingForm textarea {
+    resize: vertical;
+}
+
+.hint {
+    font-size: 12px;
+    color: #a5798c;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+/* Game choices */
+
+.game-options {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.game-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px;
+    background: #fff0f5;
+    border: 1px solid #f3d1de;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.game-option:hover {
+    background: #ffe1ec;
+}
+
+.game-option input {
+    width: 17px;
+    height: 17px;
+    accent-color: #c44569;
+    flex-shrink: 0;
+}
+
+.game-option span {
+    overflow-wrap: anywhere;
+}
+
+/* Submit button */
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    margin-top: 24px;
+    padding: 14px 10px;
+    background: #e66d96;
+    border-color: #e66d96;
+    color: white;
+}
+
+.submit-btn:hover {
+    background: #c44569;
+}
+
+/* Confirmation */
+
+.response {
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+    margin-top: 22px;
+    padding: 15px;
+    color: #70485a;
+    background: #fff0f5;
+    border: 1px solid #edb0c5;
+    border-radius: 10px;
+}
+
+.response h3 {
+    color: #c44569;
+    font-size: 16px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.response p {
+    margin-bottom: 12px;
+}
+
+.signature {
+    text-align: right;
+    font-style: italic;
+    color: #c44569;
+    margin-top: 22px;
+}
+
+/* Envelope pocket */
+
+.pocket {
+    position: absolute;
+    inset: 0;
+    background: #f3a5bd;
+    clip-path: polygon(
+        0 0,
+        50% 55%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+    border-radius: 0 0 8px 8px;
+    z-index: 3;
+}
+
+/* Envelope flap */
+
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 110px solid #d96f94;
+    transform-origin: top center;
+    transition: transform 0.5s ease;
+    z-index: 4;
+}
+
+/* Heart decoration */
+
+.heart {
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 27px;
+    z-index: 5;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+/* Open envelope */
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.envelope.open .letter {
+    height: min(480px, 65vh);
+    bottom: 35px;
+    transform: translateY(-125px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    z-index: 2;
+}
+
+.envelope.open .heart {
+    opacity: 0;
+}
+
+/* Footer */
+
+.footer {
+    color: #a35b7a;
+    font-size: 13px;
+    font-style: italic;
+    margin-top: 15px;
+}
+
+/* Mobile screens */
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 27px;
+    }
+
+    .envelope {
+        width: 280px;
+    }
+
+    .flap {
+        border-left-width: 140px;
+        border-right-width: 140px;
+    }
+
+    .letter {
+        width: 250px;
+        left: 15px;
+    }
+
+    .envelope.open .letter {
+        height: min(480px, 65vh);
+    }
+
+    .top-buttons button {
+        padding: 11px 18px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wkwkwkwk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="container">
+        <h1>Hii </h1>
+        <p class="subtitle">Wanna spend some time together? 🎮</p>
+
+        <div class="top-buttons">
+            <button type="button" id="openBtn">OPEN 💌</button>
+            <button type="button" id="closeBtn">CLOSE</button>
+        </div>
+
+        <div class="envelope-wrapper">
+            <div class="envelope" id="envelope">
+
+                <div class="envelope-back"></div>
+
+                <article class="letter">
+                    <div class="letter-content">
+
+                        <h2>Let's Play Together! 🎮</h2>
+
+                        <p>Hiii! I have a little question for you. 🥹</p>
+
+                        <p>
+                            Would you like to play games with me?
+                        </p>
+
+                        <form id="gamingForm">
+
+                            <label for="playDate">
+                                📅 When are you free?
+                            </label>
+                            <input
+                                type="date"
+                                id="playDate"
+                                name="playDate"
+                                required
+                            >
+
+                            <label for="playTime">
+                                🕒 What time works for you?
+                            </label>
+                            <select id="playTime" name="playTime" required>
+                                <option value="">Choose a time</option>
+                                <option>Morning (9 AM - 12 PM)</option>
+                                <option>Afternoon (1 PM - 5 PM)</option>
+                                <option>Evening (6 PM - 9 PM)</option>
+                                <option>Late night (9 PM onwards)</option>
+                                <option>Anytime I'm free</option>
+                            </select>
+
+                            <label>
+                                🎮 What game do you want to play?
+                            </label>
+                            <p class="hint">Choose one or more!</p>
+
+                            <div class="game-options">
+
+                                <label class="game-option">
+                                    <input type="checkbox"
+                                           name="games"
+                                           value="Mobile Legends">
+                                    <span> Mobile Legends</span>
+                                </label>
+
+                                <label class="game-option">
+                                    <input type="checkbox"
+                                           name="games"
+                                           value="Roblox">
+                                    <span> Roblox</span>
+                                </label>
+
+                                <label class="game-option">
+                                    <input type="checkbox"
+                                           name="games"
+                                           value="Call of Duty Mobile">
+                                    <span> Call of Duty Mobile</span>
+                                </label>
+
+                                <label class="game-option">
+                                    <input type="checkbox"
+                                           name="games"
+                                           value="Valorant">
+                                    <span> Valorant</span>
+                                </label>
+
+                                <label class="game-option">
+                                    <input type="checkbox"
+                                           name="games"
+                                           value="Stardew Valley">
+                                    <span> Stardew Valley</span>
+                                </label>
+
+                            </div>
+
+                            <label for="note">
+                                Anygames would u like?
+                            </label>
+                            <textarea
+                                id="note"
+                                name="note"
+                                placeholder="Your message here..."
+                                rows="3"
+                            ></textarea>
+
+                            <button type="submit" class="submit-btn">
+                                LET'S PLAY! ❤️
+                            </button>
+
+                        </form>
+
+                        <div id="response" class="response"
+                             aria-live="polite" hidden>
+                        </div>
+
+                    </div>
+                </article>
+
+                <div class="pocket"></div>
+                <div class="flap"></div>
+                <div class="heart">❤️</div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const envelope = document.getElementById("envelope");
+        const openBtn = document.getElementById("openBtn");
+        const closeBtn = document.getElementById("closeBtn");
+        const form = document.getElementById("gamingForm");
+        const response = document.getElementById("response");
+        const playDate = document.getElementById("playDate");
+
+        // Prevent selecting a date in the past.
+        const today = new Date();
+        const localToday = new Date(
+            today.getTime() - today.getTimezoneOffset() * 60000
+        ).toISOString().split("T")[0];
+
+        playDate.min = localToday;
+
+        openBtn.addEventListener("click", () => {
+            envelope.classList.add("open");
+        });
+
+        closeBtn.addEventListener("click", () => {
+            envelope.classList.remove("open");
+        });
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const selectedGames = [
+                ...form.querySelectorAll(
+                    'input[name="games"]:checked'
+                )
+            ].map(input => input.value);
+
+            if (selectedGames.length === 0) {
+                alert("Choose at least one game, please! 🎮💕");
+                return;
+            }
+
+            const dateValue = playDate.value;
+            const formattedDate = new Date(
+                dateValue + "T12:00:00"
+            ).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            });
+
+            const time = document.getElementById("playTime").value;
+            const note = document.getElementById("note").value.trim();
+
+            response.replaceChildren();
+
+            const heading = document.createElement("h3");
+            heading.textContent = "YAY! HERE'S OUR PLAN! 💗";
+            response.appendChild(heading);
+
+            const details = document.createElement("p");
+            details.textContent =
+                "📅 Date: " + formattedDate +
+                "\n🕒 Time: " + time +
+                "\n🎮 Game(s): " + selectedGames.join(", ") +
+                (note ? "\n💌 Message: " + note : "");
+
+            response.appendChild(details);
+
+            const ending = document.createElement("p");
+            ending.textContent =
+                "Thank you for answering! Can't wait to play with you! 🥹❤️";
+            response.appendChild(ending);
+
+            response.hidden = false;
+            response.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            });
+        });
+    </script>
+
+</body>
+</html>
